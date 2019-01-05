@@ -12,6 +12,12 @@ install:
   - source /opt/qt*/bin/qt*-env.sh
 
 script:
+  - git clone https://git.merproject.org/mer-core/mlite
+  - cd mlite
+  - qmake CONFIG+=release PREFIX=/usr
+  - make -j$(nproc)
+  - sudo make install
+  - cd -
   - git clone https://github.com/sailfishos/libsailfishapp
   - cd libsailfishapp
   - qmake CONFIG+=release PREFIX=/usr
